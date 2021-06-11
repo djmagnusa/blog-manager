@@ -1,8 +1,10 @@
 import React from 'react';
+import DashboardHeader from './DashboardHeader'
 
 const DashboardPage = () => (
     <div>
-       Daskboard page content
+       <DashboardHeader />
+       
     </div>
 );
 
