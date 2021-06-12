@@ -9,12 +9,21 @@ export default (state = postDefaultState, action) => {
             ]
 
         case 'REMOVE_POST':
-            return state.filter
+            return state.filter(({ id }) => id !== action.id )
 
         case 'EDIT_POST':
-            return
+            return state.map((post) => {
+                if(post.id === action.id) {
+                    return {
+                        ...post,
+                        ...action.updates
+                    };
+                } else {
+                    return post;
+                }
+            })
 
-        case 'UPDATE_POST':
-            return
+        default:
+            return state;
     }
 }
