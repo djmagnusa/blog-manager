@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DashboardHeader = () => (
     <div className="header-content">
@@ -10,7 +11,7 @@ const DashboardHeader = () => (
             </select>
         </div>
         <div className="button-container">
-            <button className="button">Add Post</button>
+             <Link className="button" to="/create">Add Post</Link>
         </div>
     </div>
 )
