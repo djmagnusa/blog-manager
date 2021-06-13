@@ -13,3 +13,16 @@
     @extend .text-input;
     height: 10rem;
 }
+
+.post-title {
+    @extend .text-input;
+    width: 100%;
+    margin-bottom: $l-size;
+}
+
+.post-description {
+    @extend .text-input;
+    margin-bottom: $l-size;
+    height: 20rem;
+    width: 100%;
+}

@@ -11,9 +11,10 @@ class AddPostPage extends React.Component {
                     </div>
                 </div>
 
-                <div>
-                    <input className="text-input" placeholder="Post title"></input>
-                    <textarea className="text-area" placeholder="Post description"></textarea> 
+                <div className="content-container">
+                    <input className="post-title" placeholder="Post title"></input>
+                    <textarea className="post-description" placeholder="Post description"></textarea> 
+                    <button className="button">Save Post</button>
                 </div>
             
             </div>
