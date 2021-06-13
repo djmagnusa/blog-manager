@@ -1,7 +1,15 @@
 import React from 'react';
-// import PostForm from './PostForm';
+import { connect } from 'react-redux';
+import PostForm from './PostForm';
+import { startAddPost } from '../actions/posts';
 
-class AddPostPage extends React.Component {
+export class AddPostPage extends React.Component {
+  
+    onSubmit = (post) => {
+        this.props.startAddPost(post);
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <div>
@@ -12,9 +20,9 @@ class AddPostPage extends React.Component {
                 </div>
 
                 <div className="content-container">
-                    <input className="post-title" placeholder="Post title"></input>
-                    <textarea className="post-description" placeholder="Post description"></textarea> 
-                    <button className="button">Save Post</button>
+                    <PostForm
+                        onSubmit={this.onSubmit}
+                    />                    
                 </div>
             
             </div>
@@ -23,4 +31,8 @@ class AddPostPage extends React.Component {
     }
 }
 
-export default AddPostPage;
+const mapDispatchToProps = (dispatch) => ({
+    startAddPost: (post) => dispatch(startAddPost(post))
+})
+
+export default connect(undefined, mapDispatchToProps)(AddPostPage);
