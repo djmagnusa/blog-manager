@@ -10,6 +10,11 @@ class AddPostPage extends React.Component {
                         <h1 className="page-header__title">Create Post</h1>
                     </div>
                 </div>
+
+                <div>
+                    <input className="text-input" placeholder="Post title"></input>
+                    <textarea className="text-area" placeholder="Post description"></textarea> 
+                </div>
             
             </div>
         );
