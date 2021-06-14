@@ -14,10 +14,9 @@ export const startAddPost = (postData = {}) => {
         const {
            title = '',
            description = '',
-           createdAt = 0
         } = postData
 
-        const post = { title, description, createdAt }
+        const post = { title, description }
         
         return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
             dispatch(createPost({
@@ -36,6 +35,16 @@ export const removePost = ({ id } = {}) => ({
   type: 'REMOVE_POST',
   id
 });
+
+export const startRemovePost = ({ id } = {}) => {
+
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
+            dispatch(removePost({ id }));
+        })
+    };
+};
 
 // EDIT_POST
 export const editPost = (id, updates) => ({

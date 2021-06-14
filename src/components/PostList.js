@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PostListItem from './PostListItem';
 
 const PostList = (props) => (
     <div className="content-container">
         <div className="list-header">
-            <div className="show-for-mobile">Expenses</div> 
-            <div className="show-for-desktop">Expense</div>
-            <div className="show-for-desktop">Amount</div>
+            <div className="show-for-mobile">Posts</div> 
+            <div className="show-for-desktop">Post</div>
+            <div className="show-for-desktop">Date</div>
         </div>
 
         <div className="list-body">
@@ -17,7 +18,7 @@ const PostList = (props) => (
                 </div>
                 ) : (
                     props.posts.map((post) => {
-                        // return <PostListItem key={post.id} {...post} />
+                        return <PostListItem key={post.id} {...post} />
                     })
                 )
             }
