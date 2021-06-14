@@ -16,7 +16,7 @@ export default class PostForm extends React.Component {
     };
 
     onTitleChange = (e) => {
-        const title = e.tartget.value;
+        const title = e.target.value;
         this.setState(() => ({ title }));
     };
 
@@ -43,10 +43,12 @@ export default class PostForm extends React.Component {
     render(){
         return(
             <form onSubmit={this.onSubmit}>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
                 <input 
+                   type="text"
                    className="post-title" 
                    placeholder="Post title" 
-                   autofocus
+                   autoFocus
                    value={this.state.title}
                    onChange={this.onTitleChange}
                 />
