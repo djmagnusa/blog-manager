@@ -15,10 +15,34 @@ export default class PostForm extends React.Component {
         };
     };
 
+    onTitleChange = (e) => {
+        const title = e.tartget.value;
+        this.setState(() => ({ title }));
+    };
+
+    onDescriptionChange = (e) => {
+        const description = e.target.value;
+        this.setState(() => ({ description }));
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        if(!this.state.title || !this.state.description){
+            this.setState(() => ({ error: 'Please provide title and description'}));
+        } else {
+            this.setState(() => ({ error: ''}))
+
+            this.props.onSubmit({
+                title: this.state.title,
+                description: this.state.description,
+             });
+        }
+    }
 
     render(){
         return(
-            <form>
+            <form onSubmit={this.onSubmit}>
                 <input 
                    className="post-title" 
                    placeholder="Post title" 
