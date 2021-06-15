@@ -40,7 +40,7 @@ export const startRemovePost = ({ id } = {}) => {
 
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
-        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
+        return database.ref(`users/${uid}/posts/${id}`).remove().then(() => {
             dispatch(removePost({ id }));
         })
     };
@@ -48,7 +48,40 @@ export const startRemovePost = ({ id } = {}) => {
 
 // EDIT_POST
 export const editPost = (id, updates) => ({
-  type: 'EDIT_POST',
-  id,
-  updates
+    type: 'EDIT_POST',
+    id,
+    updates
 });
+
+export const startEditPost = (id, updates) => {
+
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/posts/${id}`).update().then(() => {
+            dispatch(editPost(id, updates));
+        })
+    }
+}
+
+export const setPosts = () => ({
+    type: 'SET_POSTS',
+    posts
+});
+
+export const startSetPosts = () => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/posts/${id}`).once('value').then((snapshot) => {
+            const posts = [];
+
+            snapshot.forEach((childSnapshot) => {
+                posts.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(setPosts(posts))
+        });
+    };
+;}
