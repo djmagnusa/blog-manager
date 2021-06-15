@@ -23,6 +23,9 @@ export default (state = postDefaultState, action) => {
                 }
             })
 
+        case 'SET_POST':
+            return action.posts
+
         default:
             return state;
     }
