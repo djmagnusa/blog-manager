@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import { startSetPosts } from './actions/posts';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -34,10 +35,13 @@ firebase.auth().onAuthStateChanged((user) => {
         // console.log('log in');
             // console.log('uid', user.uid) //user.uid stores the user id
             store.dispatch(login(user.uid));
-            renderApp();
-            if (history.location.pathname === '/') { //if they just logged in and they are on the login page  
-                history.push('/dashboard');
-            }
+            store.dispatch(startSetPosts()).then(() => {
+                renderApp();
+                if (history.location.pathname === '/') { //if they just logged in and they are on the login page  
+                    history.push('/dashboard');
+                }
+            })
+            
     } else {
         // console.log('log out');
         store.dispatch(logout());
