@@ -63,15 +63,15 @@ export const startEditPost = (id, updates) => {
     }
 }
 
-export const setPosts = () => ({
+export const setPosts = (posts) => ({
     type: 'SET_POSTS',
     posts
 });
 
-export const startSetPosts = () => {
+export const startSetPosts = () => {  //for fetching the data from firebase in app.js so that we dont lose data on refresh
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
-        return database.ref(`users/${uid}/posts/${id}`).once('value').then((snapshot) => {
+        return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
             const posts = [];
 
             snapshot.forEach((childSnapshot) => {
