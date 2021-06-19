@@ -14,9 +14,10 @@ export const startAddPost = (postData = {}) => {
         const {
            title = '',
            description = '',
+           createdAt = 0
         } = postData
 
-        const post = { title, description }
+        const post = { title, description, createdAt }
         
         return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
             dispatch(createPost({
@@ -57,7 +58,7 @@ export const startEditPost = (id, updates) => {
 
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
-        return database.ref(`users/${uid}/posts/${id}`).update().then(() => {
+        return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
             dispatch(editPost(id, updates));
         })
     }
