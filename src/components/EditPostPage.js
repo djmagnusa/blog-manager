@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostFrom from './PostForm';
+import PostForm from './PostForm';
+import { startEditPost, startRemovePost } from '../actions/posts';
 
 export class EditPostPage extends React.Component {
 
@@ -25,6 +26,7 @@ export class EditPostPage extends React.Component {
 
                 <div className="content-container">
                     <PostForm 
+                        post={this.props.posts}
                         onSubmit={this.onSubmit}
                     />
 
@@ -37,12 +39,14 @@ export class EditPostPage extends React.Component {
 };
 
 const mapStateToProps = (state, props) => {
-
+    return {
+        post: state.posts.find((post) => post.id === props.match.params.id)
+    };
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    startEditPost = (id, post) => dispatch(startEditPost(id, post)),
-    startRemovePost = (data) => dispatch(startRemovePost(data))
+const mapDispatchToProps = (dispatch, props) => ({
+    startEditPost: (id, post) => dispatch(startEditPost(id, post)),
+    startRemovePost: (data) => dispatch(startRemovePost(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);
