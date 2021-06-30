@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 export default class PostForm extends React.Component {
  
@@ -10,6 +11,7 @@ export default class PostForm extends React.Component {
 
             title : props.post ? props.post.title : '',
             description : props.post ? props.post.description : '',
+            createdAt: props.post ? moment(props.post.createdAt) : moment(),
             error : ''
 
         };
@@ -36,6 +38,7 @@ export default class PostForm extends React.Component {
             this.props.onSubmit({
                 title: this.state.title,
                 description: this.state.description,
+                createdAt: this.state.createdAt.valueOf()
              });
         }
     }
