@@ -1,8 +1,8 @@
 import moment from 'moment'
 
 const filterReducerDefaultState = {
-    title: '',
-    sortBy: 'date'
+    text: '',
+    sortBy: 'title'
 }
 
 export default(state = filterReducerDefaultState, action) => {
