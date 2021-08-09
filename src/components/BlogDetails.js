@@ -9,7 +9,7 @@ export const BlogDetails = ({ postCount }) => {
     return (
         <div className="page-header">
             <div className="content-container">
-                <div className="page-header__title">You currently have {postCount} active {postWord}</div>
+                <h1 className="page-header__title">You currently have <span>{postCount}</span> active <span>{postWord}</span></h1>
             </div>
         </div>
     );
