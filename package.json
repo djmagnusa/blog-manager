@@ -1,6 +1,9 @@
 {
   "name": "blog-manager",
   "version": "1.0.0",
+  "engines": {
+    "node": "15.2.1"
+  },
   "main": "index.js",
   "author": "Pratush",
   "license": "MIT",
