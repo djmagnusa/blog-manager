@@ -25,6 +25,9 @@ export class EditPostPage extends React.Component {
                 </div>
 
                 <div className="content-container">
+    
+                    <p>View this post here - </p>
+
                     <PostForm 
                         post={this.props.posts}
                         onSubmit={this.onSubmit}
